@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>QR Code</title>
+    <meta name="csrf-token" content="3uSYETPHPkc9wlUNqoVvKq80UKN9rtMJZZlTOuhY">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+    <style>
+        body {
+            margin: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            margin-top:-50px;
+        }
+
+        .container label {
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-family: sans-serif;
+            font-size: 13px;
+            color: #726f6f;
+        }
+
+        .container .qr-code {
+            /* display: flex;
+            align-items: center;
+            justify-content: center; */
+            margin-top: 5px;
+            /* border: 6px solid #f8f8f8; */
+            border-radius: 8px;
+            padding-top: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-bottom: -1px;
+            /* margin-left:42.5%;
+            margin-right:43.5%; */
+        }
+
+        .logo {
+            /* position: fixed;
+            top: 30px;
+            left: 40px; */
+            width: 130px;
+            height: auto;
+        }
+
+        .icons {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .icons figure {
+            /* display: flex; */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .icons figure a {
+            /* display: flex; */
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            background-color: #fff;
+            color: rgba(119, 56, 235, 1);
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .icons figure a {
+            box-shadow: 0 0 5px 0 #ebe3f7;
+        }
+
+        .icons figure figcaption {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #161515;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: rgba(119, 56, 235, 1);
+            color: #fff;
+            margin-top: 60px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: rgba(119, 56, 235, 0.8);
+        }
+
+        #copyMessage {
+            display: none;
+            display: none;
+            color: rgba(119, 56, 235, 0.8);
+            background-color: #ebe3f7;
+            padding-left: 4px;
+            padding-right: 4px;
+            border-radius: 5px;
+            position: absolute;
+            top: 100%;
+            left: 60%;
+            transform: translateX(-50%);
+            font-size: 14px;
+        }
+        .bottom-text{
+            position:fixed;
+            right:20px;
+            font-size:14px;
+            font-weight:bold;  
+        }
+        .bottom-logo{
+            position:fixed;
+            right:80px;
+            bottom: 25px;
+            height:50px;  
+        }
+        .logobottom{
+            height:45px;
+
+        }
+
+        @media  screen and (max-width: 768px) {
+            .logo_img {
+                text-align: center;
+            }
+            .bottom-text{
+                position:fixed;
+                right:150px;
+                font-size:12px;
+                font-weight:bold;
+                bottom: 55px;
+            }
+            .bottom-logo{
+                position:fixed;
+                right:220px;
+                bottom: 10px;
+                height:50px;  
+            }
+            .logobottom{
+                height:35px;
+
+            }
+           
+        }
+
+        .icons figure a {
+            box-shadow: 0 0 5px 0 #ebe3f7;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <div class="logo_img">
+        <a href="http://164.52.212.11/demo/appshare/public"><img src="http://164.52.212.11/demo/appshare/public/images/appfuse.svg" class="logo"></a>
+    </div>
+    <div class="container">
+        <label class="mt-3">Please scan the below QR code to gain access to the files</label>
+        <div class="qr-code" id="qrCodeContainer">
+
+                            <a href="" download="diawi (1).apk" target="_blank">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAE3klEQVR4nO3dy67TQBAFQIL4/18OG9iM0JmM5tUOVdsktsPlqN2Zh1/v9/v9A/inn7cvACoTEAgEBAIBgUBAIBAQCAQEAgGBQEAgEBAIBAQCAYFAQCAQEAgEBAIBgUBAIBAQCAQEAgGBQEAgEBAIBAQCAYFAQCAQEAgEBAIBgUBAIBAQCAQEAgGBQEAg+HX7Av56vV5Hzzf6YK32+trP7369dz2zTp+vp8qDz1QQCAQEAgGBoEwP0lp9D9q7hx7tAVq9nmL2embPt/rf8/Tf5xYVBAIBgUBAICjbg7RG71Fne4jR10fHOUaP3zN6vtZsD7b773OLCgKBgEAgIBA8pgfZbfU99Ozv+rvHZZ7SA9ymgkAgIBAICAR6kD9m79lXr++o3uP8L1QQCAQEAgGB4DE9yO575Nm5S63ZHqL6epDTx79FBYFAQCAQEAjK9iC31yjP7mvVWr1vVs/T9uWqSgWBQEAgEBAIXu9v/QF70un1IafXgJuL9RkVBAIBgUBAICgzDrL7eRezx1897tEzux6ld7zR128/D+UWFQQCAYFAQCAo04Psnhs0u35i9z316rlYq3u63XvvVu1JVBAIBAQCAYGg7Fys3Wu+b98jVz/e6PlaRf9bDVNBIBAQCAQEgjLjILv3sl299+7s9cx+/vYa9t7nW1XHOXpUEAgEBAIBgaDMOMjpfZZ237OPvn/3eon/dS7VLBUEAgGBQEAgKNuD7L7Hn72e1Z/fvf5l9Hyn9wLuHe8WFQQCAYFAQCAo24Pstntc4fZ6ldnjzZ6vd/6njJuoIBAICAQCAkGZ9SCjVv/Ov3s9RO/9s3v9rt6LePT837IXb0sFgUBAIBAQCMr2IKvHAW7vG7V6zfzunmT38Z7Sk6ggEAgIBAICQZkeZPc+WLPH6x3/9rjK7vUyp49fpSdRQSAQEAgEBIKy60Fm74l7bs8lWn39veOv7mlGGQeBLyQgEAgIBGXHQVbPNbo992r3PffquWir/32f0nO0VBAIBAQCAYGgTA8y6vbetz2r977tmf0+oz3f6PGNg8AXEhAIBASCsnOxem6PM1TreWatXnPe2v2MxF1UEAgEBAIBgaDsOMjuvW5nz7f7+SCjx5t1e71LlZ6jpYJAICAQCAgEZXuQntm5Q73jjTrdc+zeh+v0vmFVqSAQCAgEAgJB2blYq+9hq/3Of3sfrt3rU1pPXbOugkAgIBAICARlepDbVvcUvffPnn9Utb18nzJOooJAICAQCAgEZeZinV6TPTu3qPd6+31Oj5u0du/z1XrquEdLBYFAQCAQEAjK9CCt08/PWH1Pf3qN+263n8l4iwoCgYBAICAQlO1BWrf3uRo9/+25SbPf/2nPR9lFBYFAQCAQEAge04Ocdvo57LvnUvWOd/r6b4/rfEoFgUBAIBAQCPQgHzr9TMLTc9Fm3z/6fZ/Sk6ggEAgIBAICwWN6kNv3qLv3jbq9/mX09dme4vbf81MqCAQCAoGAQFC2B7m9XmD1M/52n3/3vlm9Z0DOrvmv2pOoIBAICAQCAoHng0CggkAgIBAICAQCAoGAQCAgEAgIBAICgYBAICAQCAgEAgKBgEAgIBAICAQCAoGAQCAgEAgIBAICgYBAICAQCAgEAgKBgEAgIBAICAQCAoGAQCAgEAgIBAICgYBA8Bt1cRiZ87CvbgAAAABJRU5ErkJggg==" />
+                </a>
+            
+        </div>
+        <div class="icons">
+            <figure>
+                <a href="" id="shareIcon"><i class="fa fa-share-alt"></i></a>
+                <figcaption>Share</figcaption>
+            </figure>
+                            <figure>
+                    <a href="" download="diawi (1).apk" id="downloadIcon"><i
+                            class="fa fa-download"></i></a>
+                    <figcaption>Download</figcaption>
+                </figure>
+                        <figure>
+                <a href="" id="copyIcon" onclick="copyUrl(event)">
+                    <i class="fa fa-copy"></i>
+                </a>
+                <figcaption>Copy</figcaption>
+            </figure>
+            <div><span id="copyMessage"></span></div>
+
+        </div>
+        <div>
+            <a href="http://164.52.212.11/demo/appshare/public"><button class="btn">Generate More</button></a>
+        </div>
+    </div>
+    <div class="bottom-text">Design and Developed by HEMA'S</div>
+    <div class="bottom-logo">
+        <div class="bottom-img ">
+            <img src="http://164.52.212.11/demo/appshare/public/images/new hemas copy 1.jpg" class="logobottom">
+        </div>
+    </div>
+     
+<script>
+        // Get the share icon element
+        var shareIcon = document.getElementById('shareIcon');
+
+        // Add a click event listener to the share icon
+        shareIcon.addEventListener('click', function() {
+            // Check if the Web Share API is available in the browser
+            if (navigator.share) {
+                // Share the URL using the Web Share API
+                navigator.share({
+                        url: '',
+                        text: 'Check out this file',
+                    })
+                    .then(function() {
+                        console.log('Sharing successful');
+                    })
+                    .catch(function(error) {
+                        console.log('Sharing failed', error);
+                    });
+            } else {
+                console.log('Web Share API not supported');
+            }
+        });
+
+        // Get the download icon element
+        var downloadIcon = document.getElementById('downloadIcon');
+        downloadIcon.addEventListener('click', function() {
+            var tempAnchor = document.createElement('a');
+            tempAnchor.href = '';
+            tempAnchor.download = 'diawi (1).apk';
+            //tempAnchor.click();
+        });
+
+        //copy link
+        function copyUrl(event) {
+            event.preventDefault();
+
+            // Get the URL
+            var url = 'http://164.52.212.11/demo/appshare/public/qrcodegenerator/1ff8a7b5dc7a7d1f0ed65aaa29c04b1e';
+
+            // Create a temporary textarea element
+            var textarea = document.createElement('textarea');
+            textarea.value = url;
+            document.body.appendChild(textarea);
+
+            // Copy the URL from the textarea
+            textarea.select();
+            document.execCommand('copy');
+
+            // Remove the textarea
+            document.body.removeChild(textarea);
+
+            // Show the copy message
+            var copyMessageElement = document.getElementById('copyMessage');
+            copyMessageElement.textContent = 'link copied';
+            copyMessageElement.style.display = 'inline-block';
+
+            // Hide the copy message after 2 seconds
+            setTimeout(function() {
+                copyMessageElement.style.display = 'none';
+            }, 4000);
+        }
+</script>
+</body>
+</html>
